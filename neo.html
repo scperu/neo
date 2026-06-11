@@ -734,8 +734,16 @@
     function formatearFecha(fecha) {
         if (!fecha) return '-';
         let date = parseDateFromString(fecha);
-        return (date && !isNaN(date)) ? date.toLocaleDateString('es-PE') : '-';
+        if (date && !isNaN(date)) {
+            const dia = String(date.getDate()).padStart(2, '0');
+            const mes = String(date.getMonth() + 1).padStart(2, '0');
+            const anio = date.getFullYear();
+            return `${dia}/${mes}/${anio}`;
+        }
+        return '-';
     }
+
+
 
     function getSaludo() {
         const hora = new Date().getHours();
@@ -926,7 +934,7 @@
                         <td data-label="SEXO"><span class="badge-gender ${genderClass}">${genderText}</span></td>
                         <td data-label="DIRECCIÓN">${item.direccion || '-'}</td>
                         <td data-label="CONTACTO">${whatsappButtons}</td>
-                        <td data-label="FECHA ATENCIÓN">${formatearFecha(item.fechaAtencion)}</td>
+                        <td data-label="FECHA ATENCIÓN">${item.fechaAtencion|| '-'}</td>
                     </tr>`;
         }
         tbody.innerHTML = html;
