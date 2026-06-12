@@ -675,16 +675,33 @@
     let filteredData = [];
     let searchDebounceTimer = null;
 
-    // ========== FUNCIONES DE FECHA ==========
+    // ========== FUNCIONES DE FECHA CORREGIDAS ==========
+    // Interpreta correctamente fechas en formato DD/MM/YYYY o DD-MM-YYYY
     function parseDateFromString(dateStr) {
         if (!dateStr) return null;
-        let clean = dateStr.toString().replace(/[^\d\/\-]/g, '');
-        let date = new Date(clean);
-        if (!isNaN(date)) return date;
-        let parts = clean.split(/[/-]/);
-        if (parts.length === 3) {
-            if (parts[0].length === 4) return new Date(parts[0], parts[1] - 1, parts[2]);
-            else return new Date(parts[2], parts[1] - 1, parts[0]);
+        const clean = dateStr.toString().trim();
+        const parts = clean.split(/[/-]/);
+        if (parts.length !== 3) return null;
+
+        let day, month, year;
+        // Si el primer segmento tiene 4 dígitos → asumimos YYYY-MM-DD
+        if (parts[0].length === 4) {
+            year = parseInt(parts[0], 10);
+            month = parseInt(parts[1], 10) - 1;
+            day = parseInt(parts[2], 10);
+        } else {
+            // Formato DD/MM/YYYY o DD-MM-YYYY (el más común en tu hoja)
+            day = parseInt(parts[0], 10);
+            month = parseInt(parts[1], 10) - 1;
+            year = parseInt(parts[2], 10);
+        }
+
+        if (isNaN(day) || isNaN(month) || isNaN(year)) return null;
+
+        const date = new Date(year, month, day);
+        // Validación extra: asegura que la fecha sea consistente
+        if (date.getFullYear() === year && date.getMonth() === month && date.getDate() === day) {
+            return date;
         }
         return null;
     }
@@ -742,8 +759,6 @@
         }
         return '-';
     }
-
-
 
     function getSaludo() {
         const hora = new Date().getHours();
@@ -935,7 +950,7 @@
                         <td data-label="DIRECCIÓN">${item.direccion || '-'}</td>
                         <td data-label="CONTACTO">${whatsappButtons}</td>
                         <td data-label="FECHA ATENCIÓN">${item.fechaAtencion|| '-'}</td>
-                    </tr>`;
+                     </tr>`;
         }
         tbody.innerHTML = html;
         document.getElementById('recordBadge').innerHTML = `${filteredData.length.toLocaleString()} registros (mostrando ${start+1}-${Math.min(end, filteredData.length)} de ${filteredData.length.toLocaleString()})`;
