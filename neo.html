@@ -55,7 +55,6 @@
             padding: 20px;
         }
 
-        /* responsive padding */
         @media (max-width: 768px) {
             .container {
                 padding: 12px;
@@ -70,7 +69,6 @@
             transition: all 0.3s ease;
         }
 
-        /* HEADER RESPONSIVE */
         .header-premium {
             display: flex;
             justify-content: space-between;
@@ -114,7 +112,6 @@
             white-space: nowrap;
         }
 
-        /* SEARCH SECTION - FULL RESPONSIVE */
         .search-premium {
             display: flex;
             gap: 12px;
@@ -214,7 +211,9 @@
             .search-premium {
                 flex-direction: column;
             }
-            .search-wrapper, .filter-wrapper, .btn-premium {
+            .search-wrapper,
+            .filter-wrapper,
+            .btn-premium {
                 width: 100%;
             }
             .btn-premium {
@@ -222,7 +221,6 @@
             }
         }
 
-        /* KPI CARDS - RESPONSIVE GRID */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -269,17 +267,15 @@
             word-break: break-word;
         }
 
-        /* TABLA RESPONSIVE: tarjetas en móvil */
         .table-premium {
             overflow: hidden;
             border-radius: 28px;
         }
 
-        /* Para desktop: tabla normal */
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 900px;
+            min-width: 800px;
         }
 
         .data-table th {
@@ -304,7 +300,6 @@
             background: rgba(79, 70, 229, 0.1);
         }
 
-        /* MODO MÓVIL: convertir tabla en tarjetas */
         @media (max-width: 768px) {
             .data-table,
             .data-table thead,
@@ -316,7 +311,7 @@
             }
 
             .data-table thead {
-                display: none; /* Ocultamos cabecera en móvil */
+                display: none;
             }
 
             .data-table tr {
@@ -343,7 +338,6 @@
                 border-bottom: none;
             }
 
-            /* Etiqueta que aparece antes del contenido */
             .data-table td::before {
                 content: attr(data-label);
                 font-weight: 600;
@@ -359,12 +353,12 @@
                 min-width: 100px;
             }
 
-            /* Ajuste para botones de WhatsApp en móvil */
             .whatsapp-buttons {
                 justify-content: flex-end;
             }
-            
-            .btn-wa {
+
+            .btn-wa,
+            .btn-copy {
                 padding: 5px 10px;
                 font-size: 11px;
             }
@@ -416,6 +410,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+            align-items: center;
         }
 
         .btn-wa {
@@ -438,7 +433,44 @@
             filter: brightness(1.1);
         }
 
-        /* Paginación responsive */
+        .btn-copy {
+            background: rgba(79, 70, 229, 0.2);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            color: var(--text-primary);
+            padding: 5px 8px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: rgba(79, 70, 229, 0.4);
+            transform: scale(1.02);
+        }
+
+        .btn-copy.copied {
+            background: rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #34d399;
+        }
+
+        .phone-number-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .phone-number-display {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-right: 2px;
+            font-weight: 500;
+        }
+
         .pagination {
             display: flex;
             justify-content: center;
@@ -483,7 +515,6 @@
             }
         }
 
-        /* LOADING RESPONSIVE */
         .loading-premium {
             position: fixed;
             inset: 0;
@@ -554,7 +585,6 @@
             }
         }
 
-        /* Ajustes generales para textos largos */
         .text-ellipsis {
             word-break: break-word;
         }
@@ -562,440 +592,586 @@
         .record-badge-mobile {
             display: inline-block;
         }
-        
+
         @media (max-width: 480px) {
-            .table-premium > div:first-child {
+            .table-premium>div:first-child {
                 font-size: 14px;
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 8px;
             }
-            .table-premium > div:first-child span:last-child {
+            .table-premium>div:first-child span:last-child {
                 float: none;
                 display: inline-block;
             }
+        }
+
+        .phone-badge {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.15);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(16, 185, 129, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 3000;
+            pointer-events: none;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast i {
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
 
-<div class="loading-premium" id="loadingOverlay">
-    <div class="loading-content">
-        <div class="loader"></div>
-        <div id="loadingText" style="color: var(--text-secondary); margin-bottom: 10px;">Conectando...</div>
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <div id="progressPercent" style="font-size: 12px; color: var(--text-secondary);">0%</div>
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Número copiado</span>
     </div>
-</div>
 
-<div class="container fade-in">
-    <div class="header-premium">
-        <div class="logo-area">
-            <h1><i class="fas fa-baby-carriage"></i> MED PRO</h1>
-            <p>Alta performance | <span id="recordCountSpan">0</span> pacientes registrados</p>
-        </div>
-        <div class="status-badge">
-            <i class="fas fa-circle"></i>
-            <span>Live</span>
+    <div class="loading-premium" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loader"></div>
+            <div id="loadingText" style="color: var(--text-secondary); margin-bottom: 10px;">Conectando...</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div id="progressPercent" style="font-size: 12px; color: var(--text-secondary);">0%</div>
         </div>
     </div>
 
-    <div class="search-premium">
-        <div class="search-wrapper">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Buscar por DNI, nombre, teléfono, dirección...">
+    <div class="container fade-in">
+        <div class="header-premium">
+            <div class="logo-area">
+                <h1><i class="fas fa-baby-carriage"></i> MED PRO</h1>
+                <p>Alta performance | <span id="recordCountSpan">0</span> pacientes únicos</p>
+            </div>
+            <div class="status-badge">
+                <i class="fas fa-circle"></i>
+                <span>Live</span>
+            </div>
         </div>
-        <div class="filter-wrapper">
-            <i class="fas fa-child"></i>
-            <select id="ageGroupFilter">
-                <option value="">Todos los pacientes</option>
-                <option value="0-1">👶 Lacticopitos (Menores de 1 año)</option>
-                <option value="1-2">🐰 Lacticonejitos (1 a 2 años)</option>
-                <option value="2-3">🌈 Lactiarcoiris (2 a 3 años)</option>
-                <option value="4-5">⭐ Lactiestrellitas (4 a 5 años)</option>
-            </select>
+
+        <div class="search-premium">
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por DNI, nombre, teléfono, dirección...">
+            </div>
+            <div class="filter-wrapper">
+                <i class="fas fa-child"></i>
+                <select id="ageGroupFilter">
+                    <option value="">Todos los pacientes</option>
+                    <option value="0-1">👶 Lacticopitos (Menores de 1 año)</option>
+                    <option value="1-2">🐰 Lacticonejitos (1 a 2 años)</option>
+                    <option value="2-3">🌈 Lactiarcoiris (2 a 3 años)</option>
+                    <option value="4-5">⭐ Lactiestrellitas (4 a 5 años)</option>
+                </select>
+            </div>
+            <button class="btn-premium btn-primary-premium" id="refreshBtn"><i class="fas fa-sync-alt"></i> Actualizar</button>
         </div>
-        <button class="btn-premium btn-primary-premium" id="refreshBtn"><i class="fas fa-sync-alt"></i> Actualizar</button>
+
+        <div class="kpi-grid">
+            <div class="glass-card kpi-card">
+                <div class="kpi-icon"><i class="fas fa-users"></i></div>
+                <div class="kpi-label">PACIENTES ÚNICOS</div>
+                <div class="kpi-number" id="totalPacientes">0</div>
+            </div>
+            <div class="glass-card kpi-card">
+                <div class="kpi-icon"><i class="fas fa-calendar-check"></i></div>
+                <div class="kpi-label">TOTAL ATENCIONES</div>
+                <div class="kpi-number" id="totalAtenciones">0</div>
+            </div>
+            <div class="glass-card kpi-card">
+                <div class="kpi-icon"><i class="fas fa-venus-mars"></i></div>
+                <div class="kpi-label">MASCULINO / FEMENINO</div>
+                <div class="kpi-number" id="totalGenero">0 / 0</div>
+            </div>
+        </div>
+
+        <div class="glass-card table-premium">
+            <div style="padding: 16px 20px 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <span style="font-weight: 600;"><i class="fas fa-table-list"></i> Registro de Pacientes</span>
+                <span id="recordBadge" style="background: rgba(79,70,229,0.2); padding: 4px 12px; border-radius: 40px; font-size: 12px;"></span>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="data-table" id="responsiveTable">
+                    <thead>
+                        <tr>
+                            <th>DNI</th>
+                            <th>PACIENTE</th>
+                            <th>FECHA NAC.</th>
+                            <th>EDAD</th>
+                            <th>SEXO</th>
+                            <th>DIRECCIÓN</th>
+                            <th>CONTACTO</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            <div id="paginationContainer" class="pagination"></div>
+        </div>
     </div>
 
-    <div class="kpi-grid">
-        <div class="glass-card kpi-card">
-            <div class="kpi-icon"><i class="fas fa-users"></i></div>
-            <div class="kpi-label">PACIENTES ÚNICOS</div>
-            <div class="kpi-number" id="totalPacientes">0</div>
-        </div>
-        <div class="glass-card kpi-card">
-            <div class="kpi-icon"><i class="fas fa-calendar-check"></i></div>
-            <div class="kpi-label">TOTAL ATENCIONES</div>
-            <div class="kpi-number" id="totalAtenciones">0</div>
-        </div>
-        <div class="glass-card kpi-card">
-            <div class="kpi-icon"><i class="fas fa-venus-mars"></i></div>
-            <div class="kpi-label">MASCULINO / FEMENINO</div>
-            <div class="kpi-number" id="totalGenero">0 / 0</div>
-        </div>
-    </div>
+    <script>
+        // ========== CONFIGURACIÓN ==========
+        const SHEET_ID = "19K_WVLpwPNbihNJGUnxl5TJczvYSK2b7xf2sYTlObDw";
+        const SHEET_NAME = "bd_neo";
+        const API_URL = `https://opensheet.elk.sh/${SHEET_ID}/${SHEET_NAME}`;
+        const ROWS_PER_PAGE = 50;
+        let currentPage = 1;
+        let allData = [];
+        let filteredData = [];
+        let searchDebounceTimer = null;
 
-    <div class="glass-card table-premium">
-        <div style="padding: 16px 20px 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-            <span style="font-weight: 600;"><i class="fas fa-table-list"></i> Registro de Pacientes</span>
-            <span id="recordBadge" style="background: rgba(79,70,229,0.2); padding: 4px 12px; border-radius: 40px; font-size: 12px;"></span>
-        </div>
-        <div style="overflow-x: auto;">
-            <table class="data-table" id="responsiveTable">
-                <thead>
-                    <tr>
-                        <th>DNI</th>
-                        <th>PACIENTE</th>
-                        <th>FECHA NAC.</th>
-                        <th>EDAD</th>
-                        <th>SEXO</th>
-                        <th>DIRECCIÓN</th>
-                        <th>CONTACTO</th>
-                        <th>FECHA ATENCIÓN</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-            </table>
-        </div>
-        <div id="paginationContainer" class="pagination"></div>
-    </div>
-</div>
+        // ========== TOAST ==========
+        let toastTimeout = null;
 
-<script>
-    // ========== CONFIGURACIÓN ==========
-    const SHEET_ID = "19K_WVLpwPNbihNJGUnxl5TJczvYSK2b7xf2sYTlObDw";
-    const SHEET_NAME = "bd_neo";
-    const API_URL = `https://opensheet.elk.sh/${SHEET_ID}/${SHEET_NAME}`;
-    const ROWS_PER_PAGE = 50;
-    let currentPage = 1;
-    let allData = [];
-    let filteredData = [];
-    let searchDebounceTimer = null;
-
-    // ========== FUNCIONES DE FECHA CORREGIDAS ==========
-    // Interpreta correctamente fechas en formato DD/MM/YYYY o DD-MM-YYYY
-    function parseDateFromString(dateStr) {
-        if (!dateStr) return null;
-        const clean = dateStr.toString().trim();
-        const parts = clean.split(/[/-]/);
-        if (parts.length !== 3) return null;
-
-        let day, month, year;
-        // Si el primer segmento tiene 4 dígitos → asumimos YYYY-MM-DD
-        if (parts[0].length === 4) {
-            year = parseInt(parts[0], 10);
-            month = parseInt(parts[1], 10) - 1;
-            day = parseInt(parts[2], 10);
-        } else {
-            // Formato DD/MM/YYYY o DD-MM-YYYY (el más común en tu hoja)
-            day = parseInt(parts[0], 10);
-            month = parseInt(parts[1], 10) - 1;
-            year = parseInt(parts[2], 10);
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
         }
 
-        if (isNaN(day) || isNaN(month) || isNaN(year)) return null;
+        // ========== FUNCIÓN COPIAR ==========
+        window.copyToClipboard = function(text) {
+            if (!text) return;
+            // Limpiar el número (solo dígitos)
+            const cleanNumber = text.replace(/\D/g, '');
+            if (!cleanNumber) return;
 
-        const date = new Date(year, month, day);
-        // Validación extra: asegura que la fecha sea consistente
-        if (date.getFullYear() === year && date.getMonth() === month && date.getDate() === day) {
-            return date;
-        }
-        return null;
-    }
+            // Mostrar el número con + para el usuario
+            const displayNumber = '+' + cleanNumber;
 
-    function calcularEdadEnMeses(fechaNacimiento) {
-        if (!fechaNacimiento) return null;
-        let fechaNac = parseDateFromString(fechaNacimiento);
-        if (!fechaNac || isNaN(fechaNac)) return null;
-        const hoy = new Date();
-        let años = hoy.getFullYear() - fechaNac.getFullYear();
-        let meses = hoy.getMonth() - fechaNac.getMonth();
-        let días = hoy.getDate() - fechaNac.getDate();
-        if (días < 0) {
-            meses--;
-            días += new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate();
-        }
-        if (meses < 0) {
-            años--;
-            meses += 12;
-        }
-        return (años * 12) + meses;
-    }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(displayNumber).then(() => {
+                    showToast(`📋 ${displayNumber} copiado`);
+                }).catch(() => {
+                    fallbackCopy(displayNumber);
+                });
+            } else {
+                fallbackCopy(displayNumber);
+            }
+        };
 
-    function calcularEdadDetallada(fechaNacimiento) {
-        if (!fechaNacimiento) return '-';
-        let fechaNac = parseDateFromString(fechaNacimiento);
-        if (!fechaNac || isNaN(fechaNac)) return '-';
-        const hoy = new Date();
-        let años = hoy.getFullYear() - fechaNac.getFullYear();
-        let meses = hoy.getMonth() - fechaNac.getMonth();
-        let días = hoy.getDate() - fechaNac.getDate();
-        if (días < 0) {
-            meses--;
-            días += new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate();
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast(`📋 ${text} copiado`);
+            } catch (e) {
+                showToast('❌ Error al copiar');
+            }
+            document.body.removeChild(textarea);
         }
-        if (meses < 0) {
-            años--;
-            meses += 12;
+
+        // ========== FUNCIONES DE FECHA ==========
+        function parseDateFromString(dateStr) {
+            if (!dateStr) return null;
+            const clean = dateStr.toString().trim();
+            const parts = clean.split(/[/-]/);
+            if (parts.length !== 3) return null;
+
+            let day, month, year;
+            if (parts[0].length === 4) {
+                year = parseInt(parts[0], 10);
+                month = parseInt(parts[1], 10) - 1;
+                day = parseInt(parts[2], 10);
+            } else {
+                day = parseInt(parts[0], 10);
+                month = parseInt(parts[1], 10) - 1;
+                year = parseInt(parts[2], 10);
+            }
+
+            if (isNaN(day) || isNaN(month) || isNaN(year)) return null;
+            const date = new Date(year, month, day);
+            if (date.getFullYear() === year && date.getMonth() === month && date.getDate() === day) {
+                return date;
+            }
+            return null;
         }
-        const partes = [];
-        if (años > 0) partes.push(`${años} año${años !== 1 ? 's' : ''}`);
-        if (meses > 0) partes.push(`${meses} mes${meses !== 1 ? 'es' : ''}`);
-        if (días > 0 && años === 0) partes.push(`${días} día${días !== 1 ? 's' : ''}`);
-        return partes.length ? partes.join(' ') : '< 1 mes';
-    }
 
-    function formatearFecha(fecha) {
-        if (!fecha) return '-';
-        let date = parseDateFromString(fecha);
-        if (date && !isNaN(date)) {
-            const dia = String(date.getDate()).padStart(2, '0');
-            const mes = String(date.getMonth() + 1).padStart(2, '0');
-            const anio = date.getFullYear();
-            return `${dia}/${mes}/${anio}`;
+        function calcularEdadEnMeses(fechaNacimiento) {
+            if (!fechaNacimiento) return null;
+            let fechaNac = parseDateFromString(fechaNacimiento);
+            if (!fechaNac || isNaN(fechaNac)) return null;
+            const hoy = new Date();
+            let años = hoy.getFullYear() - fechaNac.getFullYear();
+            let meses = hoy.getMonth() - fechaNac.getMonth();
+            let días = hoy.getDate() - fechaNac.getDate();
+            if (días < 0) {
+                meses--;
+                días += new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate();
+            }
+            if (meses < 0) {
+                años--;
+                meses += 12;
+            }
+            return (años * 12) + meses;
         }
-        return '-';
-    }
 
-    function getSaludo() {
-        const hora = new Date().getHours();
-        if (hora >= 6 && hora < 12) return "Buenos días";
-        if (hora >= 12 && hora < 19) return "Buenas tardes";
-        return "Buenas noches";
-    }
-
-    function generarMensajeWhatsApp(nombrePaciente, edadMeses) {
-        const saludo = getSaludo();
-        if (edadMeses !== null && edadMeses >= 1 && edadMeses <= 33) {
-            return `Hola ${saludo} Sr(a), me comunico con usted por su bebé *${nombrePaciente}* para brindarle cita para las sesiones de ESTIMULACIÓN TEMPRANA, los cuales se realizan los fines de semana específicamente por la mañana en horarios según su edad.`;
-        } else if (edadMeses !== null && edadMeses >= 0 && edadMeses <= 24) {
-            return `Hola ${saludo} Sr(a), me comunico con usted por su bebé *${nombrePaciente}* para brindarle CONSEJERÍA EN LACTANCIA MATERNA. Puede visitarnos en el Hospital II Essalud Huancavelica cuando presenta algún problema al AMAMANTAR A SU BEBÉ.`;
+        function calcularEdadDetallada(fechaNacimiento) {
+            if (!fechaNacimiento) return '-';
+            let fechaNac = parseDateFromString(fechaNacimiento);
+            if (!fechaNac || isNaN(fechaNac)) return '-';
+            const hoy = new Date();
+            let años = hoy.getFullYear() - fechaNac.getFullYear();
+            let meses = hoy.getMonth() - fechaNac.getMonth();
+            let días = hoy.getDate() - fechaNac.getDate();
+            if (días < 0) {
+                meses--;
+                días += new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate();
+            }
+            if (meses < 0) {
+                años--;
+                meses += 12;
+            }
+            const partes = [];
+            if (años > 0) partes.push(`${años} año${años !== 1 ? 's' : ''}`);
+            if (meses > 0) partes.push(`${meses} mes${meses !== 1 ? 'es' : ''}`);
+            if (días > 0 && años === 0) partes.push(`${días} día${días !== 1 ? 's' : ''}`);
+            return partes.length ? partes.join(' ') : '< 1 mes';
         }
-        return "";
-    }
 
-    function extraerNumerosTelefono(texto) {
-        if (!texto) return [];
-        const numeros = new Set();
-        const regex = /\b\d{9}\b/g;
-        const matches = texto.match(regex);
-        if (matches) {
-            matches.forEach(num => {
-                let limpio = num.replace(/[^\d]/g, '');
-                if (limpio.length === 9 && limpio.startsWith('9')) limpio = '51' + limpio;
-                numeros.add(limpio);
+        function formatearFecha(fecha) {
+            if (!fecha) return '-';
+            let date = parseDateFromString(fecha);
+            if (date && !isNaN(date)) {
+                const dia = String(date.getDate()).padStart(2, '0');
+                const mes = String(date.getMonth() + 1).padStart(2, '0');
+                const anio = date.getFullYear();
+                return `${dia}/${mes}/${anio}`;
+            }
+            return '-';
+        }
+
+        function getSaludo() {
+            const hora = new Date().getHours();
+            if (hora >= 6 && hora < 12) return "Buenos días";
+            if (hora >= 12 && hora < 19) return "Buenas tardes";
+            return "Buenas noches";
+        }
+
+        function generarMensajeWhatsApp(nombrePaciente, edadMeses) {
+            const saludo = getSaludo();
+            if (edadMeses !== null && edadMeses >= 1 && edadMeses <= 33) {
+                return `Hola ${saludo} Sr(a), me comunico con usted por su bebé *${nombrePaciente}* para brindarle cita para las sesiones de ESTIMULACIÓN TEMPRANA, los cuales se realizan los fines de semana específicamente por la mañana en horarios según su edad.`;
+            } else if (edadMeses !== null && edadMeses >= 0 && edadMeses <= 24) {
+                return `Hola ${saludo} Sr(a), me comunico con usted por su bebé *${nombrePaciente}* para brindarle CONSEJERÍA EN LACTANCIA MATERNA. Puede visitarnos en el Hospital II Essalud Huancavelica cuando presenta algún problema al AMAMANTAR A SU BEBÉ.`;
+            }
+            return "";
+        }
+
+        function extraerNumerosTelefono(texto) {
+            if (!texto) return [];
+            const numeros = new Set();
+            // Buscar números de 9 dígitos
+            const regex = /\b\d{9}\b/g;
+            const matches = texto.match(regex);
+            if (matches) {
+                matches.forEach(num => {
+                    let limpio = num.replace(/[^\d]/g, '');
+                    if (limpio.length === 9 && limpio.startsWith('9')) limpio = '51' + limpio;
+                    numeros.add(limpio);
+                });
+            }
+            // Buscar números con guiones o espacios
+            const regexConGuion = /\d{9}/g;
+            const matches2 = texto.match(regexConGuion);
+            if (matches2) {
+                matches2.forEach(num => {
+                    let limpio = num.replace(/[^\d]/g, '');
+                    if (limpio.length === 9 && limpio.startsWith('9')) limpio = '51' + limpio;
+                    if (limpio.length === 9) numeros.add('51' + limpio);
+                    else if (limpio.length >= 10) numeros.add(limpio);
+                });
+            }
+            return Array.from(numeros);
+        }
+
+        function renderWhatsAppButtons(telefonoTexto, nombrePaciente, edadMeses) {
+            const numeros = extraerNumerosTelefono(telefonoTexto);
+            if (numeros.length === 0) return '<span style="color:#64748b;font-size:12px;">Sin contacto</span>';
+
+            let html = '<div class="whatsapp-buttons">';
+            numeros.forEach(num => {
+                // Mostrar el número con +51 o + según corresponda
+                const numDisplay = '+' + num;
+                const numMostrar = num.slice(-9);
+                const nombreEscapado = nombrePaciente.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                html += `
+                            <div class="phone-number-wrapper">
+                                <button class="btn-wa" onclick="enviarWhatsApp('${num}', '${nombreEscapado}', ${edadMeses})">
+                                    <i class="fab fa-whatsapp"></i> ${numMostrar}
+                                </button>
+                                <button class="btn-copy" onclick="copyToClipboard('${num}')" title="Copiar número">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        `;
             });
+            html += '</div>';
+            return html;
         }
-        const regexConGuion = /\d{9}/g;
-        const matches2 = texto.match(regexConGuion);
-        if (matches2) {
-            matches2.forEach(num => {
-                let limpio = num.replace(/[^\d]/g, '');
-                if (limpio.length === 9 && limpio.startsWith('9')) limpio = '51' + limpio;
-                if (limpio.length === 9) numeros.add('51' + limpio);
-                else if (limpio.length >= 10) numeros.add(limpio);
-            });
-        }
-        return Array.from(numeros);
-    }
 
-    function renderWhatsAppButtons(telefonoTexto, nombrePaciente, edadMeses) {
-        const numeros = extraerNumerosTelefono(telefonoTexto);
-        if (numeros.length === 0) return '<span style="color:#64748b;font-size:12px;">Sin contacto</span>';
-        let html = '<div class="whatsapp-buttons">';
-        numeros.forEach(num => {
-            const numMostrar = num.slice(-9);
-            const nombreEscapado = nombrePaciente.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-            html += `<button class="btn-wa" onclick="enviarWhatsApp('${num}', '${nombreEscapado}', ${edadMeses})">
-                        <i class="fab fa-whatsapp"></i> ${numMostrar}
-                     </button>`;
-        });
-        html += '</div>';
-        return html;
-    }
+        window.enviarWhatsApp = function(telefono, nombrePaciente, edadMeses) {
+            if (!telefono) {
+                alert('No hay número de teléfono válido');
+                return;
+            }
+            const mensaje = generarMensajeWhatsApp(nombrePaciente, edadMeses);
+            // Asegurar que el número tenga el código de país
+            let numeroCompleto = telefono;
+            if (!numeroCompleto.startsWith('51') && numeroCompleto.length === 9) {
+                numeroCompleto = '51' + numeroCompleto;
+            }
+            let url = `https://wa.me/${numeroCompleto}`;
+            if (mensaje && mensaje.trim() !== "") url += `?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        };
 
-    window.enviarWhatsApp = function(telefono, nombrePaciente, edadMeses) {
-        if (!telefono) {
-            alert('No hay número de teléfono válido');
-            return;
-        }
-        const mensaje = generarMensajeWhatsApp(nombrePaciente, edadMeses);
-        let url = `https://wa.me/${telefono}`;
-        if (mensaje && mensaje.trim() !== "") url += `?text=${encodeURIComponent(mensaje)}`;
-        window.open(url, '_blank');
-    };
+        // ========== CARGA DE DATOS CON DEDUPLICACIÓN ==========
+        async function fetchDataFromSheet() {
+            const overlay = document.getElementById('loadingOverlay');
+            const loadingText = document.getElementById('loadingText');
+            const progressBar = document.getElementById('progressBar');
+            const progressPercent = document.getElementById('progressPercent');
+            overlay.style.display = 'flex';
+            progressBar.style.width = '0%';
+            progressPercent.innerText = '0%';
+            try {
+                loadingText.innerHTML = '<i class="fas fa-cloud-download-alt"></i> Conectando...';
+                progressBar.style.width = '20%';
+                progressPercent.innerText = '20%';
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                if (!data || data.length === 0) throw new Error('No hay datos');
+                loadingText.innerHTML = `<i class="fas fa-database"></i> Procesando ${data.length.toLocaleString()} registros...`;
+                progressBar.style.width = '50%';
+                progressPercent.innerText = '50%';
 
-    // ========== CARGA DE DATOS ==========
-    async function fetchDataFromSheet() {
-        const overlay = document.getElementById('loadingOverlay');
-        const loadingText = document.getElementById('loadingText');
-        const progressBar = document.getElementById('progressBar');
-        const progressPercent = document.getElementById('progressPercent');
-        overlay.style.display = 'flex';
-        progressBar.style.width = '0%';
-        progressPercent.innerText = '0%';
-        try {
-            loadingText.innerHTML = '<i class="fas fa-cloud-download-alt"></i> Conectando...';
-            progressBar.style.width = '20%';
-            progressPercent.innerText = '20%';
-            const response = await fetch(API_URL);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const data = await response.json();
-            if (!data || data.length === 0) throw new Error('No hay datos');
-            loadingText.innerHTML = `<i class="fas fa-database"></i> Procesando ${data.length.toLocaleString()} registros...`;
-            progressBar.style.width = '50%';
-            progressPercent.innerText = '50%';
-            const totalRows = data.length;
-            let processedRows = 0;
-            let tempData = [];
-            for (let i = 0; i < totalRows; i += 500) {
-                const batch = data.slice(i, i + 500);
-                const processed = batch.map(row => {
+                const pacientesMap = new Map();
+
+                for (let i = 0; i < data.length; i++) {
+                    const row = data[i];
+                    const dni = (row.DNI || '').trim();
+                    if (!dni) continue;
+
                     const fechaNac = row.FECNACIMPACIENTE || '';
-                    return {
-                        dni: row.DNI || '',
+                    const fechaAtencion = row.FECHA_ATENCION || '';
+
+                    if (pacientesMap.has(dni)) {
+                        const existing = pacientesMap.get(dni);
+                        if (fechaAtencion && (!existing.fechaAtencion || fechaAtencion > existing.fechaAtencion)) {
+                            existing.fechaAtencion = fechaAtencion;
+                        }
+                        if (row.TELEFONOS) {
+                            const existingPhones = existing.telefonos || '';
+                            if (!existingPhones.includes(row.TELEFONOS)) {
+                                existing.telefonos = existingPhones ? `${existingPhones}, ${row.TELEFONOS}` : row
+                                    .TELEFONOS;
+                            }
+                        }
+                        continue;
+                    }
+
+                    const paciente = {
+                        dni: dni,
                         paciente: row.PACIENTE || '',
                         fechaNac: fechaNac,
                         fechaNacFormateada: formatearFecha(fechaNac),
                         sexo: row.SEXO || '',
                         direccion: row.DIRECCION || '',
                         telefonos: row.TELEFONOS || '',
-                        fechaAtencion: row.FECHA_ATENCION || '',
+                        fechaAtencion: fechaAtencion,
                         edadMeses: calcularEdadEnMeses(fechaNac),
                         edadDetallada: calcularEdadDetallada(fechaNac)
                     };
-                }).filter(row => row.paciente || row.dni);
-                tempData.push(...processed);
-                processedRows += batch.length;
-                const percent = 50 + Math.floor((processedRows / totalRows) * 40);
-                progressBar.style.width = `${percent}%`;
-                progressPercent.innerText = `${percent}%`;
-                loadingText.innerHTML = `<i class="fas fa-spinner fa-pulse"></i> Procesando ${processedRows.toLocaleString()} de ${totalRows.toLocaleString()}...`;
-                await new Promise(resolve => setTimeout(resolve, 10));
-            }
-            allData = tempData;
-            progressBar.style.width = '95%';
-            progressPercent.innerText = '95%';
-            loadingText.innerHTML = '<i class="fas fa-chart-line"></i> Indexando datos...';
-            await new Promise(resolve => setTimeout(resolve, 50));
-            document.getElementById('recordCountSpan').innerHTML = allData.length.toLocaleString();
-            filteredData = [...allData];
-            currentPage = 1;
-            applyFiltersAndRender();
-            progressBar.style.width = '100%';
-            progressPercent.innerText = '100%';
-            loadingText.innerHTML = '<i class="fas fa-check-circle"></i> ¡Listo!';
-            setTimeout(() => overlay.style.display = 'none', 500);
-        } catch (error) {
-            console.error('Error:', error);
-            loadingText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error: ${error.message}`;
-            setTimeout(() => overlay.style.display = 'none', 3000);
-            document.getElementById('tableBody').innerHTML = `<tr><td colspan="8" style="text-align:center; padding:60px;"><i class="fas fa-link-broken"></i> Error de conexión. Verifica que la hoja sea pública.</td></tr>`;
-        }
-    }
+                    pacientesMap.set(dni, paciente);
 
-    function applyFiltersAndRender() {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-        const ageGroup = document.getElementById('ageGroupFilter').value;
-        filteredData = allData.filter(item => {
-            let matchesSearch = true;
-            if (searchTerm) {
-                matchesSearch = (item.dni?.toLowerCase().includes(searchTerm) ||
-                               item.paciente?.toLowerCase().includes(searchTerm) ||
-                               item.telefonos?.toLowerCase().includes(searchTerm) ||
-                               item.direccion?.toLowerCase().includes(searchTerm));
-            }
-            let matchesAge = true;
-            if (ageGroup && item.edadMeses !== null) {
-                switch (ageGroup) {
-                    case '0-1': matchesAge = item.edadMeses < 12; break;
-                    case '1-2': matchesAge = item.edadMeses >= 12 && item.edadMeses < 24; break;
-                    case '2-3': matchesAge = item.edadMeses >= 24 && item.edadMeses < 36; break;
-                    case '4-5': matchesAge = item.edadMeses >= 48 && item.edadMeses < 72; break;
-                    default: matchesAge = true;
+                    if (i % 100 === 0) {
+                        const percent = 50 + Math.floor((i / data.length) * 40);
+                        progressBar.style.width = `${percent}%`;
+                        progressPercent.innerText = `${percent}%`;
+                        loadingText.innerHTML =
+                            `<i class="fas fa-spinner fa-pulse"></i> Procesando ${i.toLocaleString()} de ${data.length.toLocaleString()}...`;
+                        await new Promise(resolve => setTimeout(resolve, 10));
+                    }
                 }
+
+                allData = Array.from(pacientesMap.values());
+                progressBar.style.width = '95%';
+                progressPercent.innerText = '95%';
+                loadingText.innerHTML = '<i class="fas fa-chart-line"></i> Indexando datos...';
+                await new Promise(resolve => setTimeout(resolve, 50));
+
+                document.getElementById('recordCountSpan').innerHTML = allData.length.toLocaleString();
+                filteredData = [...allData];
+                currentPage = 1;
+                applyFiltersAndRender();
+
+                progressBar.style.width = '100%';
+                progressPercent.innerText = '100%';
+                loadingText.innerHTML = '<i class="fas fa-check-circle"></i> ¡Listo!';
+                setTimeout(() => overlay.style.display = 'none', 500);
+
+            } catch (error) {
+                console.error('Error:', error);
+                loadingText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error: ${error.message}`;
+                setTimeout(() => overlay.style.display = 'none', 3000);
+                document.getElementById('tableBody').innerHTML =
+                    `<tr><td colspan="7" style="text-align:center; padding:60px;"><i class="fas fa-link-broken"></i> Error de conexión. Verifica que la hoja sea pública.</td></tr>`;
             }
-            return matchesSearch && matchesAge;
+        }
+
+        function applyFiltersAndRender() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const ageGroup = document.getElementById('ageGroupFilter').value;
+            filteredData = allData.filter(item => {
+                let matchesSearch = true;
+                if (searchTerm) {
+                    matchesSearch = (item.dni?.toLowerCase().includes(searchTerm) ||
+                        item.paciente?.toLowerCase().includes(searchTerm) ||
+                        item.telefonos?.toLowerCase().includes(searchTerm) ||
+                        item.direccion?.toLowerCase().includes(searchTerm));
+                }
+                let matchesAge = true;
+                if (ageGroup && item.edadMeses !== null) {
+                    switch (ageGroup) {
+                        case '0-1':
+                            matchesAge = item.edadMeses < 12;
+                            break;
+                        case '1-2':
+                            matchesAge = item.edadMeses >= 12 && item.edadMeses < 24;
+                            break;
+                        case '2-3':
+                            matchesAge = item.edadMeses >= 24 && item.edadMeses < 36;
+                            break;
+                        case '4-5':
+                            matchesAge = item.edadMeses >= 48 && item.edadMeses < 72;
+                            break;
+                        default:
+                            matchesAge = true;
+                    }
+                }
+                return matchesSearch && matchesAge;
+            });
+            currentPage = 1;
+            renderTable();
+            updateKPIs();
+            renderPagination();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            const start = (currentPage - 1) * ROWS_PER_PAGE;
+            const end = start + ROWS_PER_PAGE;
+            const pageData = filteredData.slice(start, end);
+            if (!pageData.length) {
+                tbody.innerHTML =
+                    '<tr><td colspan="7" style="text-align:center; padding:60px;"><i class="fas fa-search"></i> No se encontraron resultados</td></tr>';
+                document.getElementById('recordBadge').innerHTML = '0 registros';
+                return;
+            }
+            let html = '';
+            for (const item of pageData) {
+                const genderClass = item.sexo === 'M' ? 'badge-m' : (item.sexo === 'F' ? 'badge-f' : '');
+                const genderText = item.sexo === 'M' ? '<i class="fas fa-mars"></i> Masculino' : (item.sexo === 'F' ?
+                    '<i class="fas fa-venus"></i> Femenino' : (item.sexo || '-'));
+                const whatsappButtons = renderWhatsAppButtons(item.telefonos, item.paciente, item.edadMeses);
+                html += `<tr>
+                            <td data-label="DNI">${item.dni || '-'}</td>
+                            <td data-label="PACIENTE"><strong>${item.paciente || '-'}</strong></td>
+                            <td data-label="FECHA NAC.">${item.fechaNacFormateada}</td>
+                            <td data-label="EDAD">${item.edadDetallada}</td>
+                            <td data-label="SEXO"><span class="badge-gender ${genderClass}">${genderText}</span></td>
+                            <td data-label="DIRECCIÓN">${item.direccion || '-'}</td>
+                            <td data-label="CONTACTO">${whatsappButtons}</td>
+                         </tr>`;
+            }
+            tbody.innerHTML = html;
+            document.getElementById('recordBadge').innerHTML =
+                `${filteredData.length.toLocaleString()} registros (mostrando ${start+1}-${Math.min(end, filteredData.length)} de ${filteredData.length.toLocaleString()})`;
+        }
+
+        function updateKPIs() {
+            document.getElementById('totalPacientes').innerText = filteredData.length.toLocaleString();
+            document.getElementById('totalAtenciones').innerText = filteredData.length.toLocaleString();
+            const m = filteredData.filter(i => (i.sexo || '').toUpperCase() === 'M').length;
+            const f = filteredData.filter(i => (i.sexo || '').toUpperCase() === 'F').length;
+            document.getElementById('totalGenero').innerHTML = `${m.toLocaleString()} / ${f.toLocaleString()}`;
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE);
+            const container = document.getElementById('paginationContainer');
+            if (totalPages <= 1) { container.innerHTML = ''; return; }
+            let html =
+                `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
+            const maxVisible = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+            if (endPage - startPage + 1 < maxVisible) startPage = Math.max(1, endPage - maxVisible + 1);
+            for (let i = startPage; i <= endPage; i++) html +=
+                `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+            html +=
+                `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
+            container.innerHTML = html;
+        }
+
+        window.goToPage = function(page) {
+            const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderTable();
+            renderPagination();
+            document.querySelector('.table-premium')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        document.getElementById('searchInput').addEventListener('input', () => {
+            if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(() => applyFiltersAndRender(), 300);
         });
-        currentPage = 1;
-        renderTable();
-        updateKPIs();
-        renderPagination();
-    }
+        document.getElementById('ageGroupFilter').addEventListener('change', () => applyFiltersAndRender());
+        document.getElementById('refreshBtn').addEventListener('click', () => fetchDataFromSheet());
 
-    function renderTable() {
-        const tbody = document.getElementById('tableBody');
-        const start = (currentPage - 1) * ROWS_PER_PAGE;
-        const end = start + ROWS_PER_PAGE;
-        const pageData = filteredData.slice(start, end);
-        if (!pageData.length) {
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:60px;"><i class="fas fa-search"></i> No se encontraron resultados</td></tr>';
-            document.getElementById('recordBadge').innerHTML = '0 registros';
-            return;
-        }
-        let html = '';
-        for (const item of pageData) {
-            const genderClass = item.sexo === 'M' ? 'badge-m' : (item.sexo === 'F' ? 'badge-f' : '');
-            const genderText = item.sexo === 'M' ? '<i class="fas fa-mars"></i> Masculino' : (item.sexo === 'F' ? '<i class="fas fa-venus"></i> Femenino' : (item.sexo || '-'));
-            const whatsappButtons = renderWhatsAppButtons(item.telefonos, item.paciente, item.edadMeses);
-            html += `<tr>
-                        <td data-label="DNI">${item.dni || '-'}</td>
-                        <td data-label="PACIENTE"><strong>${item.paciente || '-'}</strong></td>
-                        <td data-label="FECHA NAC.">${item.fechaNacFormateada}</td>
-                        <td data-label="EDAD">${item.edadDetallada}</td>
-                        <td data-label="SEXO"><span class="badge-gender ${genderClass}">${genderText}</span></td>
-                        <td data-label="DIRECCIÓN">${item.direccion || '-'}</td>
-                        <td data-label="CONTACTO">${whatsappButtons}</td>
-                        <td data-label="FECHA ATENCIÓN">${item.fechaAtencion|| '-'}</td>
-                     </tr>`;
-        }
-        tbody.innerHTML = html;
-        document.getElementById('recordBadge').innerHTML = `${filteredData.length.toLocaleString()} registros (mostrando ${start+1}-${Math.min(end, filteredData.length)} de ${filteredData.length.toLocaleString()})`;
-    }
-
-    function updateKPIs() {
-        const unique = new Set(filteredData.map(i => i.dni).filter(d => d));
-        document.getElementById('totalPacientes').innerText = unique.size.toLocaleString();
-        document.getElementById('totalAtenciones').innerText = filteredData.length.toLocaleString();
-        const m = filteredData.filter(i => (i.sexo || '').toUpperCase() === 'M').length;
-        const f = filteredData.filter(i => (i.sexo || '').toUpperCase() === 'F').length;
-        document.getElementById('totalGenero').innerHTML = `${m.toLocaleString()} / ${f.toLocaleString()}`;
-    }
-
-    function renderPagination() {
-        const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE);
-        const container = document.getElementById('paginationContainer');
-        if (totalPages <= 1) { container.innerHTML = ''; return; }
-        let html = `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
-        const maxVisible = 5;
-        let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-        let endPage = Math.min(totalPages, startPage + maxVisible - 1);
-        if (endPage - startPage + 1 < maxVisible) startPage = Math.max(1, endPage - maxVisible + 1);
-        for (let i = startPage; i <= endPage; i++) html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
-        html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
-        container.innerHTML = html;
-    }
-
-    window.goToPage = function(page) {
-        const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE);
-        if (page < 1 || page > totalPages) return;
-        currentPage = page;
-        renderTable();
-        renderPagination();
-        document.querySelector('.table-premium')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
-
-    document.getElementById('searchInput').addEventListener('input', () => {
-        if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
-        searchDebounceTimer = setTimeout(() => applyFiltersAndRender(), 300);
-    });
-    document.getElementById('ageGroupFilter').addEventListener('change', () => applyFiltersAndRender());
-    document.getElementById('refreshBtn').addEventListener('click', () => fetchDataFromSheet());
-
-    fetchDataFromSheet();
-</script>
+        fetchDataFromSheet();
+    </script>
 </body>
 </html>
